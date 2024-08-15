@@ -2,6 +2,12 @@ name: 'Slack Deploy Pipeline Notifications'
 description: 'Post deploy workflow progress notifications to Slack'
 author: 'Fieldguide'
 inputs:
+  token:
+    description: 'Slack bot token secret'
+    required: true
+  channel:
+    description: 'Slack channel ID'
+    required: true
   thread_ts:
     description: 'Initial Slack message timestamp ID'
     required: false

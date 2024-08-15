@@ -39,30 +39,29 @@ on:
     branches:
       - main
 
-# 1. Configure required environment variables
-env:
-  SLACK_DEPLOY_BOT_TOKEN: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
-  SLACK_DEPLOY_CHANNEL: 'C040YVCUDRR' # replace with your Slack Channel ID
-
 jobs:
   staging:
     runs-on: ubuntu-latest
     outputs:
       slack_ts: ${{ steps.slack.outputs.ts }}
     steps:
-      # 2. Post summary message at the beginning of your workflow
+      # Post summary message at the beginning of your workflow
       - name: Post to Slack
         uses: Fieldguide/action-slack-deploy-pipeline@v2
         id: slack
+        with:
+          token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
+          channel: ${{ vars.SLACK_DEPLOY_CHANNEL }}
 
       - name: Deploy to staging
         run: sleep 10 # replace with your deploy steps
 
-      # 3. Post threaded stage updates throughout
+      # Post threaded stage updates throughout
       - name: Post to Slack
         uses: Fieldguide/action-slack-deploy-pipeline@v2
         if: always()
         with:
+          token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
           thread_ts: ${{ steps.slack.outputs.ts }}
 
   production:
@@ -73,33 +72,27 @@ jobs:
       - name: Deploy to production
         run: sleep 5 # replace with your deploy steps
 
-      # 4. Post last "conclusion" stage
+      # Post last "conclusion" stage
       - name: Post to Slack
         uses: Fieldguide/action-slack-deploy-pipeline@v2
         if: always()
         with:
+          token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
           thread_ts: ${{ needs.staging.outputs.slack_ts }}
           conclusion: true
 ```
 
-1. Configure required `SLACK_DEPLOY_BOT_TOKEN` and `SLACK_DEPLOY_CHANNEL` [environment variables](https://docs.github.com/en/actions/learn-github-actions/environment-variables).
-1. Use this action at the beginning of your workflow to post a "Deploying" message in your configured channel.
-1. As your workflow progresses, use this action with the `thread_ts` input to post threaded replies.
-1. Denote the last step with the `conclusion` input to update the initial message's status.
-
-## Environment Variables
-
-Both environment variables are _required_.
-
-| variable                 | description                |
-| ------------------------ | -------------------------- |
-| `SLACK_DEPLOY_BOT_TOKEN` | Slack Bot User OAuth Token |
-| `SLACK_DEPLOY_CHANNEL`   | Slack Channel ID           |
+1. Configure required `SLACK_DEPLOY_BOT_TOKEN` secret and `SLACK_DEPLOY_CHANNEL` [variable](https://docs.github.com/en/actions/learn-github-actions/environment-variables).
+2. Use this action at the beginning of your workflow to post a "Deploying" message in your configured channel.
+3. As your workflow progresses, use this action with the `thread_ts` input to post threaded replies.
+4. Denote the last step with the `conclusion` input to update the initial message's status.
 
 ## Inputs
 
 | input          | description                                                                                                                                                              |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `token`        | Slack Bot User OAuth Token                                                                                                                                               |
+| `channel`      | Slack Channel ID                                                                                                                                                         |
 | `thread_ts`    | Initial Slack message timestamp ID                                                                                                                                       |
 | `conclusion`   | `true` denotes last stage                                                                                                                                                |
 | `github_token` | Repository `GITHUB_TOKEN` or personal access token secret; defaults to [`github.token`](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context) |

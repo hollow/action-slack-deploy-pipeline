@@ -2,7 +2,6 @@ import {error, getInput, isDebug, setFailed, setOutput} from '@actions/core'
 import {getOctokit} from '@actions/github'
 import {getMessageAuthor} from './getMessageAuthor'
 import {OctokitClient} from './github/types'
-import {EnvironmentVariable, getEnv} from './input'
 import {postMessage} from './postMessage'
 import {SlackClient} from './slack/SlackClient'
 
@@ -27,8 +26,8 @@ async function run(): Promise<void> {
 }
 
 function createSlackClient(): SlackClient {
-  const token = getEnv(EnvironmentVariable.SlackBotToken)
-  const channel = getEnv(EnvironmentVariable.SlackChannel)
+  const token = getInput('token', {required: true})
+  const channel = getInput('channel', {required: true})
 
   return new SlackClient({token, channel})
 }
