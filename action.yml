@@ -7,7 +7,6 @@ inputs:
     required: true
   channel:
     description: 'Slack channel ID'
-    required: true
   thread_ts:
     description: 'Initial Slack message timestamp ID'
     required: false

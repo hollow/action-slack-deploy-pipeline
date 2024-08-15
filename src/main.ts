@@ -27,7 +27,7 @@ async function run(): Promise<void> {
 
 function createSlackClient(): SlackClient {
   const token = getInput('token', {required: true})
-  const channel = getInput('channel', {required: true})
+  const channel = getInput('channel')
 
   return new SlackClient({token, channel})
 }
