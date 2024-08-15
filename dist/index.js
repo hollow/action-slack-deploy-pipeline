@@ -59403,7 +59403,7 @@ function run() {
 }
 function createSlackClient() {
     const token = (0, core_1.getInput)('token', { required: true });
-    const channel = (0, core_1.getInput)('channel');
+    const channel = (0, core_1.getInput)('channel', { required: true });
     return new SlackClient_1.SlackClient({ token, channel });
 }
 function createOctokitClient() {
