@@ -43,7 +43,7 @@ jobs:
         id: slack
         with:
           token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
-          channel: ${{ vars.SLACK_DEPLOY_CHANNEL}}
+          channel: ${{ vars.SLACK_DEPLOY_CHANNEL }}
 
       - uses: ./
         with:

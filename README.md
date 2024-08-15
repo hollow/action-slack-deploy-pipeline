@@ -1,4 +1,4 @@
-[![ci](https://github.com/Fieldguide/action-slack-deploy-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Fieldguide/action-slack-deploy-pipeline/actions/workflows/ci.yml)
+[![ci](https://github.com/hollow/action-slack-deploy-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/hollow/action-slack-deploy-pipeline/actions/workflows/ci.yml)
 
 # Slack Deploy Pipeline Notifications
 
@@ -47,7 +47,7 @@ jobs:
     steps:
       # Post summary message at the beginning of your workflow
       - name: Post to Slack
-        uses: Fieldguide/action-slack-deploy-pipeline@v2
+        uses: hollow/action-slack-deploy-pipeline@v2
         id: slack
         with:
           token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
@@ -58,7 +58,7 @@ jobs:
 
       # Post threaded stage updates throughout
       - name: Post to Slack
-        uses: Fieldguide/action-slack-deploy-pipeline@v2
+        uses: hollow/action-slack-deploy-pipeline@v2
         if: always()
         with:
           token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
@@ -74,7 +74,7 @@ jobs:
 
       # Post last "conclusion" stage
       - name: Post to Slack
-        uses: Fieldguide/action-slack-deploy-pipeline@v2
+        uses: hollow/action-slack-deploy-pipeline@v2
         if: always()
         with:
           token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
