@@ -48,5 +48,6 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
+          channel: ${{ vars.SLACK_DEPLOY_CHANNEL }}
           thread_ts: ${{ steps.slack.outputs.ts }}
           conclusion: true
