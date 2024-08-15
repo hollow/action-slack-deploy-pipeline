@@ -59133,7 +59133,7 @@ function getText(octokit, status, author) {
         const summarySentence = getSummarySentence(status, author);
         const eventLink = yield getEventLink(octokit);
         const mrkdwn = [
-            status ? (0, message_1.emojiFromStatus)(status) : (0, mrkdwn_1.emoji)('black_square_button'),
+            status ? (0, message_1.emojiFromStatus)(status) : (0, mrkdwn_1.emoji)('waiting'),
             `${summarySentence.mrkdwn}:`,
             (0, mrkdwn_1.link)(eventLink)
         ].join(' ');
