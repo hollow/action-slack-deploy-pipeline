@@ -1,6 +1,6 @@
 name: 'Slack Deploy Pipeline Notifications'
 description: 'Post deploy workflow progress notifications to Slack'
-author: 'hollow'
+author: 'remerge'
 inputs:
   token:
     description: 'Slack bot token secret'

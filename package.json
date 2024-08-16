@@ -7,10 +7,10 @@
   "homepage": "https://github.com/marketplace/actions/slack-deploy-pipeline-notifications",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hollow/action-slack-deploy-pipeline.git"
+    "url": "git+https://github.com/remerge/action-slack-deploy-pipeline.git"
   },
   "bugs": {
-    "url": "https://github.com/hollow/action-slack-deploy-pipeline/issues"
+    "url": "https://github.com/remerge/action-slack-deploy-pipeline/issues"
   },
   "keywords": [
     "actions",
