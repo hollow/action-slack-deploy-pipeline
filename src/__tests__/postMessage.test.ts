@@ -83,7 +83,7 @@ describe('postMessage', () => {
             type: 'section',
             text: {
               type: 'mrkdwn',
-              text: ':black_square_button: Deploying *action-testing*: <github.com/PR-1|PR-TITLE (#1)>'
+              text: ':waiting: Deploying *action-testing*: <github.com/PR-1|PR-TITLE (#1)>'
             }
           },
           {
@@ -132,7 +132,7 @@ describe('postMessage', () => {
               type: 'section',
               text: {
                 type: 'mrkdwn',
-                text: ':black_square_button: Deploying *action-testing*: <github.com/release|1.2.3>'
+                text: ':waiting: Deploying *action-testing*: <github.com/release|1.2.3>'
               }
             },
             {
@@ -201,7 +201,7 @@ describe('postMessage', () => {
             type: 'section',
             text: {
               type: 'mrkdwn',
-              text: ':black_square_button: <@U123> is deploying *action-testing*: <github.com/commit|COMMIT-MESSAGE>'
+              text: ':waiting: <@U123> is deploying *action-testing*: <github.com/commit|COMMIT-MESSAGE>'
             }
           },
           {

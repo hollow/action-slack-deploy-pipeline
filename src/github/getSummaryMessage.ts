@@ -59,7 +59,7 @@ async function getText(
   const eventLink = await getEventLink(octokit)
 
   const mrkdwn = [
-    status ? emojiFromStatus(status) : emoji('black_square_button'),
+    status ? emojiFromStatus(status) : emoji('waiting'),
     `${summarySentence.mrkdwn}:`,
     link(eventLink)
   ].join(' ')

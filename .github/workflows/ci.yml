@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version: latest
           cache: 'npm'
 
       - name: Install Dependencies
@@ -34,9 +34,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    env:
-      SLACK_DEPLOY_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_FOR_TESTING }}
-      SLACK_DEPLOY_CHANNEL: 'C040YVCUDRR' #github_action_testing
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,8 +41,13 @@ jobs:
       - name: Post to Slack
         uses: ./
         id: slack
+        with:
+          token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
+          channel: ${{ vars.SLACK_DEPLOY_CHANNEL }}
 
       - uses: ./
         with:
+          token: ${{ secrets.SLACK_DEPLOY_BOT_TOKEN }}
+          channel: ${{ vars.SLACK_DEPLOY_CHANNEL }}
           thread_ts: ${{ steps.slack.outputs.ts }}
           conclusion: true
